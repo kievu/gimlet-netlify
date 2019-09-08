@@ -1,10 +1,23 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { sampleSize } from "lodash"
+import { Typography, Hidden } from "@material-ui/core"
+import styled from "@emotion/styled"
 
-import DrinkCard from "../components/DrinkCard"
+import DrinkDeck from "../components/DrinkDeck"
 import Layout from "../components/layout"
 import "../global.css"
+import Header from "../components/Header"
+
+const Title = styled("div")`
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 
 const IndexPage = ({
   data: {
@@ -12,11 +25,21 @@ const IndexPage = ({
   },
 }) => {
   const randomDrinks = sampleSize(drinks, 20)
-  console.log("Turbo output: randomDrinks", randomDrinks)
+
   return (
-    <Layout>
-      <DrinkCard drinks={randomDrinks} />
-    </Layout>
+    <>
+      <Header />
+      <Layout>
+        <Hidden smDown>
+          <Title>
+            <Typography variant="h4" style={{ color: "white" }}>
+              Swipe your delicious drink
+            </Typography>
+          </Title>
+        </Hidden>
+        <DrinkDeck drinks={randomDrinks} />
+      </Layout>
+    </>
   )
 }
 

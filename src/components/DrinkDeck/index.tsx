@@ -5,8 +5,9 @@ import Title from "./Title"
 import Card from "./Card"
 import CardImage from "./CardImage"
 import { to, from, trans } from "./helpers"
+import { addDrink } from "../../lib/drinksCache"
 
-function DrinkCard({ drinks }) {
+function DrinkDeck({ drinks }) {
   const [gone] = useState<Set<number>>(() => new Set())
   const [props, set] = useSprings(drinks.length, i => ({
     ...to(i),
@@ -22,8 +23,13 @@ function DrinkCard({ drinks }) {
         if (index !== i) return
         const isGone = gone.has(index)
         const x = isGone ? (200 + window.innerWidth) * dir : down ? xDelta : 0
+
         const rot = xDelta / 100 + (isGone ? dir * 10 * velocity : 0)
         const scale = down ? 1.1 : 1
+        // add drink to cache on swipe right
+        if (isGone && dir === 1) {
+          addDrink(drinks[index])
+        }
         return {
           x,
           rot,
@@ -63,4 +69,4 @@ function DrinkCard({ drinks }) {
   ))
 }
 
-export default DrinkCard
+export default DrinkDeck

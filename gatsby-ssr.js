@@ -1,7 +1,7 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
- */
+import React from "react"
+import { ThemeProvider } from "@material-ui/styles"
+import { theme } from "./src/getPageContext"
 
-// You can delete this file if you're not using it
+export const wrapPageElement = ({ element }) => (
+  <ThemeProvider theme={theme}>{element}</ThemeProvider>
+)

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 
-const Layout = styled("div")`
+const Layout = styled("main")`
   background: black;
   position: fixed;
   overflow: hidden;

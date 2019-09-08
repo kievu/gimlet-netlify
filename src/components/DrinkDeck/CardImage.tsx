@@ -8,7 +8,7 @@ const CardImage = styled(animated.div)`
   background-position: center center;
   width: 45vh;
   max-width: 300px;
-  height: 75vh;
+  height: 70vh;
   max-height: 570px;
   will-change: transform;
   border-radius: 10px;
