@@ -5,6 +5,19 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Gayathri`,
+            variants: [`400`, `700`],
+          },
+        ],
+      },
+    },
+    "gatsby-plugin-typescript",
+    "gatsby-plugin-emotion",
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
