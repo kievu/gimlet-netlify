@@ -5,9 +5,9 @@ import {
   CardHeader,
   CardMedia,
   IconButton,
+  Typography,
 } from "@material-ui/core"
 import DeleteIcon from "@material-ui/icons/Delete"
-import Layout from "../components/layout"
 import "../global.css"
 import Header from "../components/Header"
 import { getDrinks, removeDrink } from "../lib/drinksCache"
@@ -19,40 +19,60 @@ const MyDrinks = () => {
     const newDrinks = drinks.filter(drink => drink.idDrink !== id)
     setDrinks(newDrinks)
   }
+  const hasDrinks = drinks.length > 0
   return (
     <>
       <Header />
       <Container
         maxWidth="sm"
-        style={{ backgroundColor: "black", height: "100vh", overFlow: "auto" }}
+        style={{ backgroundColor: "black", height: "100vh" }}
       >
-        {drinks.map(drink => (
-          <Card
-            key={drink.idDrink}
-            style={{ display: "flex", flexDirection: "row", marginBottom: 30 }}
-          >
-            <CardMedia
-              image={drink.strDrinkThumb}
-              style={{ height: 150, width: 150 }}
-            />
-            <div
+        {hasDrinks &&
+          drinks.map(drink => (
+            <Card
+              key={drink.idDrink}
               style={{
                 display: "flex",
                 flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                width: "70%",
+                marginBottom: 30,
               }}
             >
-              <CardHeader title={drink.strDrink} />
-              <div>
-                <IconButton onClick={() => onRemove(drink.idDrink)}>
-                  <DeleteIcon style={{ fontSize: 30 }} />
-                </IconButton>
+              <CardMedia
+                image={drink.strDrinkThumb}
+                style={{ height: 150, width: 150 }}
+              />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "70%",
+                }}
+              >
+                <CardHeader title={drink.strDrink} />
+                <div>
+                  <IconButton onClick={() => onRemove(drink.idDrink)}>
+                    <DeleteIcon style={{ fontSize: 30 }} />
+                  </IconButton>
+                </div>
               </div>
-            </div>
-          </Card>
-        ))}
+            </Card>
+          ))}
+        {!hasDrinks && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginTop: 50,
+            }}
+          >
+            <Typography style={{ color: "white" }}>
+              No drinks. Please swipe some delicious drinks :)
+            </Typography>
+          </div>
+        )}
       </Container>
     </>
   )

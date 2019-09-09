@@ -5,7 +5,6 @@
 html,
 body {
   background-color: black;
-  overscroll-behavior-y: contain;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -15,5 +14,5 @@ body {
     avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial,
     sans-serif;
   position: fixed;
-  overflow: hidden;
+  overflow: auto;
 }
